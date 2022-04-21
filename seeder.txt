@@ -1,0 +1,5 @@
+membuat seeder. seeder digunakan ketika migrate database data yang sudah ada tidak akan hilang
+-php artisan make:seed NamaSeeder
+
+memanggil seeder yang dibuat ke DatabaseSeeder jika yang di panggil lebih dari 1 seeder
+-$this->cal([])

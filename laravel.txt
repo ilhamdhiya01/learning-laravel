@@ -1,0 +1,70 @@
+menambahkan column pada table
+- php artisan make:migration add_column_to_table_table
+
+
+MENGGUNAKAN TINKER
+
+mendeklarasikan model
+- $student = new App\Models\NamaModels
+
+menampilakn semua data
+-$student->get()
+
+menampilakn data berdasarkan id tertentu
+-$student->find(id)
+
+menampilkan data berdasarkan id atau yang lain
+-$student->where('nama','value')->first()
+
+menampilkan data pertama
+-$student->first()
+
+menampilkan data paling terakhir
+-$student->latest()->first()
+
+menampilkan hanya column nya saja
+-$student->get('nama')
+-$student->find(id)->first('nama')
+-$student->where('id',id)->first('nama')
+-$student->get(['nama','email'])
+
+mengupdate data 
+-$student = App\Models\NamaModel::first() / find() / where()
+ $student->alamat = 'value'
+ $student->save()
+
+membuta factory laravel
+-php artisan make:factory NamaFactory
+
+membuat 1 data factory di tinker
+-App\Models\Model::factory()->create()
+
+membuat lebih dari 1 factory
+-App\Models\Model::factory()->count(jumlah)->create()
+
+membuat seeder. seeder digunakan ketika migrate database data yang sudah ada tidak akan hilang
+-php artisan make:seed NamaSeeder
+
+memanggil seeder yang dibuat ke DatabaseSeeder jika yang di panggil lebih dari 1 seeder
+-$this->cal([])
+
+membuta seeder,factory,controller,migration secara bersamaan
+-php artisan make:model namamode -fcms
+
+untuk memperpendek route maka kita menggunakan Route::resource('/',NameController::class)
+-php artisan route:list
+-route('student.destroy, $data->id')
+
+ketika kita mau menggunakan model binding maka antara param, key dan value harus sama nama nya dengan model
+- public function(User, $user) {
+    return view('user.edit', ['user' => $user]);
+}
+
+ketika ingin mengganti identifire selain id tapi menggunakan username maka kita harus membuat method kedalam model yang di butuhkan
+-Jika menggunakan Route::resource maka harus menggunkan di bawah ini, jika ingin mengubah identifire selain id
+-public function getRouteKeyName(){
+    default mengembalikan id
+
+    return 'username'
+}
+- best praktice Route::get('/user/{user:username}', [UserController::class, 'edit'])->name('user.edit')

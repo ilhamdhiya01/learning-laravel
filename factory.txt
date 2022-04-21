@@ -1,0 +1,20 @@
+__PHP ARTISAN MAKE__
+
+membuta factory laravel
+-php artisan make:factory NamaFactory
+
+__TINKER__
+
+membuat 1 data factory di tinker
+-App\Models\Model::factory()->create()
+
+membuat lebih dari 1 factory
+-App\Models\Model::factory()->count(jumlah)->create()
+
+membuat data faker dengan relasi
+-App\Models\User::factory()->has(App\Models\Status::factory()->count(5))->count(10)->create()
+-App\Models\User::factory()->hasStatuses(5)->count(10)->create()
+
+mencari semua status berdasarkan id
+-$user1 = App\Models\User::find(1)
+-$user1->statuses->pluck('body')
